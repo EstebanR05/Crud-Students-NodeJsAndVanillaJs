@@ -1,6 +1,6 @@
 //get librarys
-const express = require('express');
-const studentRoute = require('./routes/StudentRoute.js');
+import express from 'express';
+import studentRoute from './routes/StudentRoute.js';
 
 //variables
 const app = express();
