@@ -2,7 +2,7 @@ const studentSchema = require('../schema/studentSchema.js');
 
 const getAllService = async (req, res) => {
     try {
-
+        res.send("hello");
     } catch (error) {
         handleError(res, error, "error in the server");
     }
@@ -10,7 +10,15 @@ const getAllService = async (req, res) => {
 
 const createStudentService = async (req, res) => {
     try {
+        res.send("hello");
+    } catch (error) {
+        handleError(res, error, "error in the server");
+    }
+}
 
+const updateStudentsService = async (req, res) => {
+    try {
+        res.send("hello");
     } catch (error) {
         handleError(res, error, "error in the server");
     }
@@ -21,4 +29,4 @@ const handleError = (res, error, message) => {
     res.status(500).json({ error: message })
 }
 
-module.exports = { getAllService, createStudentService };
+module.exports = { getAllService, createStudentService, updateStudentsService };
