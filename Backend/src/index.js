@@ -1,14 +1,14 @@
 //get librarys
 import express from 'express';
 import studentRoute from './routes/StudentRoute.js';
+import bodyParser from 'body-parser';
 
 //variables
 const app = express();
 const PORT = process.env.PORT || 3000;
-const bodyParse = require('body-parser');
 
 //using express
-app.use(bodyParse.json());
+app.use(bodyParser.json());
 
 //endPoints
 app.use('/', studentRoute);
