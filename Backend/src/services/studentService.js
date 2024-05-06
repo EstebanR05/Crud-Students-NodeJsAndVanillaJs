@@ -1,40 +1,28 @@
-import studentSchema from '../schema/studentSchema.js';
+import { pool } from '../schema/studentSchema.js';
 
-const getAllService = async (req, res) => {
-    try {
-        res.send("hello");
-    } catch (error) {
-        handleError(res, error, "error in the server");
-    }
+export async function getAllStudentsService() {
+    const [rows] = await pool.query(`SELECT * FROM students`);
+    return rows;
 }
 
-const createStudentService = async (req, res) => {
-    try {
-        res.send("hello");
-    } catch (error) {
-        handleError(res, error, "error in the server");
-    }
+export async function getAllStudentsByIdService(id) {
+    const [rows] = await pool.query(`SELECT * FROM students WHERE id = ?`, [id]);
+    return rows[0];
 }
 
-const updateStudentsService = async (req, res) => {
-    try {
-        res.send("hello");
-    } catch (error) {
-        handleError(res, error, "error in the server");
-    }
+export async function createStudentService(name, lastName, email, phone, adress) {
+    const [result] = await pool.query(
+        `INSERT INTO students (id, name, lastName, email, phone, adress) VALUES (null, ?, ?, ?, ?, ?)`,
+        [name, lastName, email, phone, adress]
+    );
+
+    return { id: result.insertId, name, lastName, email, phone, adress };
 }
 
-const deleteByIdService = async (req, res) => {
-    try {
-        res.send("hello");
-    } catch (error) {
-        handleError(res, error, "error in the server");
-    }
+export async function updateStudentsService() {
+
 }
 
-const handleError = (res, error, message) => {
-    console.error(message, error);
-    res.status(500).json({ error: message })
-}
+export async function deleteStudentsByIdService() {
 
-module.exports = { getAllService, createStudentService, updateStudentsService, deleteByIdService };
+}

@@ -1,19 +1,39 @@
-import studentService from '../services/studentService.js';
+import { getAllStudentsService, getAllStudentsByIdService } from '../services/studentService.js';
 
-const getAllController = async (req, res) => {
-    return await studentService.getAllService(req, res);
+export async function getAll(req, res) {
+    try {
+        const result = await getAllStudentsService();
+        res.send(result);
+    } catch (error) {
+        handleError(res, error, "error in the server");
+    }
 }
 
-const createStudentController = async (req, res) => {
-    return await studentService.createStudentService(req, res);
+export async function createStudent(req, res) {
+    try {
+        res.send("hello");
+    } catch (error) {
+        handleError(res, error, "error in the server");
+    }
 }
 
-const updateStudentsController = async (req, res) => {
-    return await studentService.updateStudentsService(req, res);
+export async function updateStudentById(req, res) {
+    try {
+        res.send("hello");
+    } catch (error) {
+        handleError(res, error, "error in the server");
+    }
 }
 
-const deleteStudentController = async (req, res) => {
-    return await studentService.deleteByIdService(req, res);
+export async function deleteStudenttById(req, res) {
+    try {
+        res.send("hello");
+    } catch (error) {
+        handleError(res, error, "error in the server");
+    }
 }
 
-module.exports = { getAllController, createStudentController, updateStudentsController, deleteStudentController };
+function handleError(res, error, message) {
+    console.error(message, error);
+    res.status(500).json({ error: message })
+}

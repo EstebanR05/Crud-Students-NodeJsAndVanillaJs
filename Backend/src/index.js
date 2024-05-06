@@ -1,4 +1,3 @@
-//get librarys
 import express from 'express';
 import studentRoute from './routes/StudentRoute.js';
 import bodyParser from 'body-parser';

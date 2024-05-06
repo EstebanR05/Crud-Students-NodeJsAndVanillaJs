@@ -41,7 +41,7 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `name`, `lastName`, `email`, `phone`, `adress`) VALUES
-(1, 'steve', 'owen', 'steveOwen@gmai.com', '3116686210', 'calle 3 #5-27');
+(1, 'steve', 'owen', 'steveOwen@gmai.com', '315215512', 'calle 3 #5-27');
 
 --
 -- Indexes for dumped tables
