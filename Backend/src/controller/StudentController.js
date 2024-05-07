@@ -1,4 +1,4 @@
-import { getAllStudentsService, getAllStudentsByIdService } from '../services/studentService.js';
+import { getAllStudentsService, getStudentByIdService, deleteStudentsByIdService, createStudentService, updateStudentsService } from '../services/studentService.js';
 
 export async function getAll(req, res) {
     try {
@@ -9,9 +9,21 @@ export async function getAll(req, res) {
     }
 }
 
+export async function getById(req, res) {
+    try {
+        const id = req.params.id;
+        const result = await getStudentByIdService(id);
+        res.send(result);
+    } catch (error) {
+        handleError(res, error, "error in the server");
+    }
+}
+
 export async function createStudent(req, res) {
     try {
-        res.send("hello");
+        const { name, lastName, email, phone, adress } = req.body;
+        const result = await createStudentService(name, lastName, email, phone, adress);
+        res.status(201).send(result);
     } catch (error) {
         handleError(res, error, "error in the server");
     }
@@ -19,15 +31,25 @@ export async function createStudent(req, res) {
 
 export async function updateStudentById(req, res) {
     try {
-        res.send("hello");
+        const id = req.params.id;
+        const { name, lastName, email, phone, adress } = req.body;
+        const result = await updateStudentsService(id, name, lastName, email, phone, adress);
+        res.status(201).send(result);
     } catch (error) {
         handleError(res, error, "error in the server");
     }
 }
 
-export async function deleteStudenttById(req, res) {
+export async function deleteStudentById(req, res) {
     try {
-        res.send("hello");
+        const id = req.params.id;
+        const result = await deleteStudentsByIdService(id);
+
+        if (result) {
+            res.send("okay!");
+        } else {
+            res.send("Lo sentimos, no se pudo eliminar!");
+        }
     } catch (error) {
         handleError(res, error, "error in the server");
     }

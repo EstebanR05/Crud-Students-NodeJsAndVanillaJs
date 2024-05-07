@@ -5,7 +5,7 @@ export async function getAllStudentsService() {
     return rows;
 }
 
-export async function getAllStudentsByIdService(id) {
+export async function getStudentByIdService(id) {
     const [rows] = await pool.query(`SELECT * FROM students WHERE id = ?`, [id]);
     return rows[0];
 }
@@ -16,13 +16,19 @@ export async function createStudentService(name, lastName, email, phone, adress)
         [name, lastName, email, phone, adress]
     );
 
-    return { id: result.insertId, name, lastName, email, phone, adress };
+    const id = result.insertId;
+    return getStudentByIdService(id);
 }
 
-export async function updateStudentsService() {
-
+export async function updateStudentsService(id, name, lastName, email, phone, adress) {
+    await pool.query(
+        `UPDATE students SET name = ?, lastName = ?, email = ?, phone = ?, adress = ? WHERE id = ?`, 
+        [name, lastName, email, phone, adress, id]
+    );
+    return getStudentByIdService(id);
 }
 
-export async function deleteStudentsByIdService() {
-
+export async function deleteStudentsByIdService(id) {
+    await pool.query(`DELETE FROM students WHERE id = ?`, [id]);
+    return true;
 }
