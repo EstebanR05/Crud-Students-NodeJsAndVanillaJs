@@ -30,5 +30,4 @@ export async function updateStudentsService(id, name, lastName, email, phone, ad
 
 export async function deleteStudentsByIdService(id) {
     await pool.query(`DELETE FROM students WHERE id = ?`, [id]);
-    return true;
 }

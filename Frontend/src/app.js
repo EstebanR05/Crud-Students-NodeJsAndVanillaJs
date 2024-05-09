@@ -80,7 +80,10 @@ var Aplication = new function () {
     }
 
     this.deleteValues = (id) => {
-        fetch(urlDelete + id, { method: "DELETE", headers: { "Content-Type": "application/json" } }).then(response => response.json()).then(result => { this.read() }).catch(console.log);
+        fetch(urlDelete + id, { method: "DELETE", headers: { "Content-Type": "application/json" } })
+            .then(response => response.json())
+            .then(result => { this.read() })
+            .catch(console.log);
     }
 }
 

@@ -22,11 +22,6 @@ export async function getById(req, res) {
 export async function createStudent(req, res) {
     try {
         const { name, lastName, email, phone, adress } = req.body;
-        
-        if (!name || !lastName || !email || !phone || !adress) {
-            throw new Error('Todos los campos son requeridos!!');
-        }
-
         const result = await createStudentService(name, lastName, email, phone, adress);
         res.status(201).send(result);
     } catch (error) {
@@ -48,13 +43,8 @@ export async function updateStudentById(req, res) {
 export async function deleteStudentById(req, res) {
     try {
         const id = req.params.id;
-        const result = await deleteStudentsByIdService(id);
-
-        if (result) {
-            res.send("okay!");
-        } else {
-            res.send("Lo sentimos, no se pudo eliminar!");
-        }
+        await deleteStudentsByIdService(id);
+        res.status(201).send({});
     } catch (error) {
         handleError(res, error, "error in the server");
     }
