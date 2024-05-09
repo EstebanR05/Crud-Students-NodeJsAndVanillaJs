@@ -6,6 +6,9 @@ const urlCreate = `${generalUrl}/createStudents`;
 const urlUpdate = `${generalUrl}/updateStudents/`;
 const urlDelete = `${generalUrl}/delete/`;
 
+//modal
+var modal = new bootstrap.Modal(document.getElementById('modalId'), { Keyboard: false });
+
 //start aplications
 var Aplication = new function () {
     //values forms
@@ -34,7 +37,7 @@ var Aplication = new function () {
                     datas += `<td>${student.adress}</td>`;
                     datas += '<td>'
                         + '<div class="btn-group" role="group" aria-label="Button group name">'
-                        + `<button type="button" class="btn btn-sm btn-dark mr-3 ml-3">Edit</button>`
+                        + `<button type="button" class="btn btn-sm btn-dark mr-3 ml-3" onclick="Aplication.updateValues(${student.id})">Edit</button>`
                         + `<button type="button" class="btn btn-sm btn-danger mr-3 ml-3" onclick="Aplication.deleteValues(${student.id})">Delete</button>`
                         + '</div>'
                         + '</td>';
@@ -52,8 +55,10 @@ var Aplication = new function () {
         fetch(urlGetById + id)
             .then(r => r.json())
             .then((result) => {
-                return datas = result;
+                datas = result;
             }).catch(console.log);
+
+        //return datas;
     };
 
     this.createValues = () => {
@@ -72,11 +77,13 @@ var Aplication = new function () {
     }
 
     this.updateValues = (id) => {
-        let send = {};
-        fetch(urlUpdate + id, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(send) })
-            .then(response => response.json())
-            .then(result => { this.read() })
-            .catch(console.log);
+        modal.show();
+
+        // let send = {};
+        // fetch(urlUpdate + id, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(send) })
+        //     .then(response => response.json())
+        //     .then(result => { this.read() })
+        //     .catch(console.log);
     }
 
     this.deleteValues = (id) => {

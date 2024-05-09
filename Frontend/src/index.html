@@ -51,7 +51,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">adress:</label>
+                                <label class="form-label">address:</label>
                                 <input type="text" class="form-control form-control-sm" name="adress" id="adress"
                                     aria-describedby="helpId" placeholder="adress of students" />
                             </div>
@@ -77,7 +77,7 @@
                                         <th scope="col">lastName</th>
                                         <th scope="col">email</th>
                                         <th scope="col">phone</th>
-                                        <th scope="col">adress</th>
+                                        <th scope="col">address</th>
                                         <th scope="col">Actions</th>
                                     </tr>
                                 </thead>
@@ -85,6 +85,58 @@
                             </table>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+        aria-labelledby="modalTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleId">
+                        Edit Student
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Name:</label>
+                            <input type="text" class="form-control form-control-sm" name="name" id="nameEdit"
+                                aria-describedby="helpId" placeholder="name of students" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">lastName:</label>
+                            <input type="text" class="form-control form-control-sm" name="lastName" id="lastNameEdit"
+                                aria-describedby="helpId" placeholder="lastName of students" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control form-control-sm" name="email" id="emailEdit"
+                                aria-describedby="emailHelpId" placeholder="pleace enter your email" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Phone:</label>
+                            <input type="number" class="form-control form-control-sm" name="phone" id="phoneEdit"
+                                aria-describedby="helpId" placeholder="phone of students" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Address:</label>
+                            <input type="text" class="form-control form-control-sm" name="adress" id="adressEdit"
+                                aria-describedby="helpId" placeholder="adress of students" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-dark">Save</button>
                 </div>
             </div>
         </div>
