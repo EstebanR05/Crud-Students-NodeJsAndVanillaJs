@@ -22,6 +22,11 @@ export async function getById(req, res) {
 export async function createStudent(req, res) {
     try {
         const { name, lastName, email, phone, adress } = req.body;
+        
+        if (!name || !lastName || !email || !phone || !adress) {
+            throw new Error('Todos los campos son requeridos!!');
+        }
+
         const result = await createStudentService(name, lastName, email, phone, adress);
         res.status(201).send(result);
     } catch (error) {
