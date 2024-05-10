@@ -11,15 +11,25 @@ var modal = new bootstrap.Modal(document.getElementById('modalId'), { Keyboard: 
 
 //start aplications
 var Aplication = new function () {
-    //values forms
+    //values forms create
     this.name = document.getElementById('name');
     this.lastName = document.getElementById('lastName');
     this.email = document.getElementById('email');
     this.phone = document.getElementById('phone');
     this.address = document.getElementById('adress');
 
+    //values forms update
+    this.nameUpdate = document.getElementById('nameUpdate');
+    this.lastNameUpdate = document.getElementById('lastNameUpdate');
+    this.emailUpdate = document.getElementById('emailUpdate');
+    this.phoneUpdate = document.getElementById('phoneUpdate');
+    this.addressUpdate = document.getElementById('adressUpdate');
+
     //table
     this.students = document.getElementById('students');
+
+    //id update
+    this.idUpdate;
 
     //methods
     this.read = () => {
@@ -37,7 +47,7 @@ var Aplication = new function () {
                     datas += `<td>${student.adress}</td>`;
                     datas += '<td>'
                         + '<div class="btn-group" role="group" aria-label="Button group name">'
-                        + `<button type="button" class="btn btn-sm btn-dark mr-3 ml-3" onclick="Aplication.updateValues(${student.id})">Edit</button>`
+                        + `<button type="button" class="btn btn-sm btn-dark mr-3 ml-3" onclick="Aplication.showModal(${student.id})">Edit</button>`
                         + `<button type="button" class="btn btn-sm btn-danger mr-3 ml-3" onclick="Aplication.deleteValues(${student.id})">Delete</button>`
                         + '</div>'
                         + '</td>';
@@ -47,18 +57,6 @@ var Aplication = new function () {
 
                 return this.students.innerHTML = datas;
             }).catch(console.log);
-    };
-
-    this.getById = (id) => {
-        var datas;
-
-        fetch(urlGetById + id)
-            .then(r => r.json())
-            .then((result) => {
-                datas = result;
-            }).catch(console.log);
-
-        //return datas;
     };
 
     this.createValues = () => {
@@ -76,14 +74,43 @@ var Aplication = new function () {
             .catch(console.log);
     }
 
-    this.updateValues = (id) => {
+    this.showModal = (id) => {
         modal.show();
 
-        // let send = {};
-        // fetch(urlUpdate + id, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(send) })
-        //     .then(response => response.json())
-        //     .then(result => { this.read() })
-        //     .catch(console.log);
+        //change the id update
+        this.idUpdate = id;
+
+        //getValues iputs modal
+        fetch(urlGetById + id)
+            .then(r => r.json())
+            .then((result) => {
+                this.nameUpdate = result.name;
+                this.lastNameUpdate = result.lastName;
+                this.emailUpdate = result.email;
+                this.phoneUpdate = result.phone;
+                this.addressUpdate = result.adress;
+            }).catch(console.log);
+    }
+
+    this.saveModal = () => {
+        this.updateValues(this.idUpdate);
+        modal.hide();
+    }
+
+    this.updateValues = (id) => {
+        let valueSend = {
+            id: id,
+            name: this.nameUpdate.value,
+            lastName: this.lastNameUpdate.value,
+            email: this.emailUpdate.value,
+            phone: this.phoneUpdate.value,
+            adress: this.addressUpdate.value
+        };
+
+        fetch(urlUpdate + id, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(valueSend) })
+            .then(response => response.json())
+            .then(result => { this.read() })
+            .catch(console.log);
     }
 
     this.deleteValues = (id) => {
