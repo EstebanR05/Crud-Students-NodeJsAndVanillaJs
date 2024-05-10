@@ -1,5 +1,4 @@
 # Crud-Students-NodeJsAndJs
-
 This personal project was created to challenge my logic and way of visualizing JavaScript in a broad manner.
 
 # Backend
