@@ -84,11 +84,11 @@ var Aplication = new function () {
         fetch(urlGetById + id)
             .then(r => r.json())
             .then((result) => {
-                this.nameUpdate = result.name;
-                this.lastNameUpdate = result.lastName;
-                this.emailUpdate = result.email;
-                this.phoneUpdate = result.phone;
-                this.addressUpdate = result.adress;
+                this.nameUpdate.value = result.name;
+                this.lastNameUpdate.value = result.lastName;
+                this.emailUpdate.value = result.email;
+                this.phoneUpdate.value = result.phone;
+                this.addressUpdate.value = result.adress;
             }).catch(console.log);
     }
 

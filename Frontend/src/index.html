@@ -28,32 +28,32 @@
                         <form action="javaScript:void(0);" method="post" onsubmit="Aplication.createValues();">
                             <div class="mb-3">
                                 <label class="form-label">Name:</label>
-                                <input type="text" class="form-control form-control-sm" name="name" id="name"
+                                <input required type="text" class="form-control form-control-sm" name="name" id="name"
                                     aria-describedby="helpId" placeholder="name of students" />
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">lastName:</label>
-                                <input type="text" class="form-control form-control-sm" name="lastName" id="lastName"
-                                    aria-describedby="helpId" placeholder="lastName of students" />
+                                <input required type="text" class="form-control form-control-sm" name="lastName"
+                                    id="lastName" aria-describedby="helpId" placeholder="lastName of students" />
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Email</label>
-                                <input type="email" class="form-control form-control-sm" name="email" id="email"
-                                    aria-describedby="emailHelpId" placeholder="pleace enter your email" />
+                                <input required type="email" class="form-control form-control-sm" name="email"
+                                    id="email" aria-describedby="emailHelpId" placeholder="pleace enter your email" />
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">phone:</label>
-                                <input type="number" class="form-control form-control-sm" name="phone" id="phone"
-                                    aria-describedby="helpId" placeholder="phone of students" />
+                                <input required type="number" class="form-control form-control-sm" name="phone"
+                                    id="phone" aria-describedby="helpId" placeholder="phone of students" />
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">address:</label>
-                                <input type="text" class="form-control form-control-sm" name="adress" id="adress"
-                                    aria-describedby="helpId" placeholder="adress of students" />
+                                <input required type="text" class="form-control form-control-sm" name="adress"
+                                    id="adress" aria-describedby="helpId" placeholder="adress of students" />
                             </div>
 
                             <div class="mb-3 d-flex justify-content-end">
@@ -95,49 +95,52 @@
         aria-labelledby="modalTitleId" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalTitleId">
-                        Edit Student
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label class="form-label">Name:</label>
-                            <input type="text" class="form-control form-control-sm" name="name" id="nameEdit"
-                                aria-describedby="helpId" placeholder="name of students" />
+                <form action="javascript:void(0);" method="put" onsubmit="Aplication.saveModal();">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitleId">
+                            Edit Student
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="form-label">Name:</label>
+                                <input required type="text" class="form-control form-control-sm" name="name"
+                                    id="nameUpdate" aria-describedby="helpId" placeholder="name of students" />
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">lastName:</label>
+                                <input required type="text" class="form-control form-control-sm" name="lastName"
+                                    id="lastNameUpdate" aria-describedby="helpId" placeholder="lastName of students" />
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Email</label>
+                                <input required type="email" class="form-control form-control-sm" name="email"
+                                    id="emailUpdate" aria-describedby="emailHelpId"
+                                    placeholder="pleace enter your email" />
+                            </div>
                         </div>
-                        <div class="col-md-4">
-                            <label class="form-label">lastName:</label>
-                            <input type="text" class="form-control form-control-sm" name="lastName" id="lastNameEdit"
-                                aria-describedby="helpId" placeholder="lastName of students" />
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-control form-control-sm" name="email" id="emailEdit"
-                                aria-describedby="emailHelpId" placeholder="pleace enter your email" />
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="form-label">Phone:</label>
+                                <input required type="number" class="form-control form-control-sm" name="phone"
+                                    id="phoneUpdate" aria-describedby="helpId" placeholder="phone of students" />
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Address:</label>
+                                <input required type="text" class="form-control form-control-sm" name="adress"
+                                    id="adressUpdate" aria-describedby="helpId" placeholder="adress of students" />
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label class="form-label">Phone:</label>
-                            <input type="number" class="form-control form-control-sm" name="phone" id="phoneEdit"
-                                aria-describedby="helpId" placeholder="phone of students" />
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label">Address:</label>
-                            <input type="text" class="form-control form-control-sm" name="adress" id="adressEdit"
-                                aria-describedby="helpId" placeholder="adress of students" />
-                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="submit" class="btn btn-dark">Save</button>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                        Close
-                    </button>
-                    <button type="button" class="btn btn-dark" onclick="Aplication.saveModal();">Save</button>
-                </div>
+                </form>
             </div>
         </div>
     </div>
