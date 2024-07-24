@@ -1,14 +1,20 @@
-import express from 'express';
-import { getAll, createStudent, updateStudentById, deleteStudentById, getById } from '../controller/StudentController.js';
+import express from "express";
+import {
+  getAll,
+  createStudent,
+  updateStudentById,
+  deleteStudentById,
+  getById,
+} from "../controller/StudentController.js";
 
 const router = express.Router();
 
 router
-    .get('/getAllStudents', getAll)
-    .get('/getById/:id', getById)
-    .post('/createStudents', createStudent)
-    .put('/updateStudents/:id', updateStudentById)
-    .delete('/delete/:id', deleteStudentById);
+  .get("/getAllStudents", getAll)
+  .get("/getById/:id", getById)
+  .post("/createStudents", createStudent)
+  .put("/updateStudents/:id", updateStudentById)
+  .delete("/delete/:id", deleteStudentById);
 
 export default router;
 

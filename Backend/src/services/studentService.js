@@ -1,4 +1,4 @@
-import { pool } from '../schema/studentSchema.js';
+import { pool } from '../conexion.js';
 
 export async function getAllStudentsService() {
     const [rows] = await pool.query(`SELECT * FROM students`);
@@ -22,7 +22,7 @@ export async function createStudentService(name, lastName, email, phone, adress)
 
 export async function updateStudentsService(id, name, lastName, email, phone, adress) {
     await pool.query(
-        `UPDATE students SET name = ?, lastName = ?, email = ?, phone = ?, adress = ? WHERE id = ?`, 
+        `UPDATE students SET name = ?, lastName = ?, email = ?, phone = ?, adress = ? WHERE id = ?`,
         [name, lastName, email, phone, adress, id]
     );
     return getStudentByIdService(id);
