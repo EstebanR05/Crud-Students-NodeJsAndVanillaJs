@@ -22,12 +22,12 @@ export async function createStudentService(name, lastName, email, phone, adress)
 
 export async function updateStudentsService(id, name, lastName, email, phone, adress) {
     await pool.query(
-        `UPDATE students SET name = ?, lastName = ?, email = ?, phone = ?, adress = ? WHERE id = ?`,
-        [name, lastName, email, phone, adress, id]
+        `UPDATE students SET name = ?, lastName = ?, email = ?, phone = ?, adress = ? WHERE id = ${id}`,
+        [name, lastName, email, phone, adress]
     );
     return getStudentByIdService(id);
 }
 
 export async function deleteStudentsByIdService(id) {
-    await pool.query(`DELETE FROM students WHERE id = ?`, [id]);
+    await pool.query(`DELETE FROM students WHERE id = ${id}`);
 }

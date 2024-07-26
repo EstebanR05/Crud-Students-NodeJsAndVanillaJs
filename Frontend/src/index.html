@@ -21,51 +21,7 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-5">
-                <div class="card mt-3">
-                    <div class="card-header bg-white">Students</div>
-                    <div class="card-body">
-                        <form action="javaScript:void(0);" method="post" onsubmit="Aplication.createValues();">
-                            <div class="mb-3">
-                                <label class="form-label">Name:</label>
-                                <input required type="text" class="form-control form-control-sm" name="name" id="name"
-                                    aria-describedby="helpId" placeholder="name of students" />
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">lastName:</label>
-                                <input required type="text" class="form-control form-control-sm" name="lastName"
-                                    id="lastName" aria-describedby="helpId" placeholder="lastName of students" />
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">Email</label>
-                                <input required type="email" class="form-control form-control-sm" name="email"
-                                    id="email" aria-describedby="emailHelpId" placeholder="pleace enter your email" />
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">phone:</label>
-                                <input required type="number" class="form-control form-control-sm" name="phone"
-                                    id="phone" aria-describedby="helpId" placeholder="phone of students" />
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">address:</label>
-                                <input required type="text" class="form-control form-control-sm" name="adress"
-                                    id="adress" aria-describedby="helpId" placeholder="adress of students" />
-                            </div>
-
-                            <div class="mb-3 d-flex justify-content-end">
-                                <button type="submit" class="btn button-sm btn-dark">
-                                    save student
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-7">
+            <div class="col-md-12">
                 <div class="card mt-3">
                     <div class="card-header bg-white">List of Students</div>
                     <div class="card-body p-2">
@@ -95,7 +51,7 @@
         aria-labelledby="modalTitleId" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
             <div class="modal-content">
-                <form action="javascript:void(0);" method="put" onsubmit="Aplication.saveModal();">
+                <form action="javascript:void(0);" method="put" onsubmit="Aplication.submit();">
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalTitleId">
                             Edit Student
@@ -107,17 +63,17 @@
                             <div class="col-md-4">
                                 <label class="form-label">Name:</label>
                                 <input required type="text" class="form-control form-control-sm" name="name"
-                                    id="nameUpdate" aria-describedby="helpId" placeholder="name of students" />
+                                    id="name" aria-describedby="helpId" placeholder="name of students" />
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label">lastName:</label>
                                 <input required type="text" class="form-control form-control-sm" name="lastName"
-                                    id="lastNameUpdate" aria-describedby="helpId" placeholder="lastName of students" />
+                                    id="lastName" aria-describedby="helpId" placeholder="lastName of students" />
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label">Email</label>
                                 <input required type="email" class="form-control form-control-sm" name="email"
-                                    id="emailUpdate" aria-describedby="emailHelpId"
+                                    id="email" aria-describedby="emailHelpId"
                                     placeholder="pleace enter your email" />
                             </div>
                         </div>
@@ -125,12 +81,12 @@
                             <div class="col-md-4">
                                 <label class="form-label">Phone:</label>
                                 <input required type="number" class="form-control form-control-sm" name="phone"
-                                    id="phoneUpdate" aria-describedby="helpId" placeholder="phone of students" />
+                                    id="phone" aria-describedby="helpId" placeholder="phone of students" />
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label">Address:</label>
                                 <input required type="text" class="form-control form-control-sm" name="adress"
-                                    id="adressUpdate" aria-describedby="helpId" placeholder="adress of students" />
+                                    id="adress" aria-describedby="helpId" placeholder="adress of students" />
                             </div>
                         </div>
                     </div>
