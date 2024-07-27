@@ -19,12 +19,23 @@
 </head>
 
 <body>
-    <div class="container" >
+    <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="card mt-3">
-                    <div class="card-header bg-white">Information</div>
-                    <div class="card-body p-2">
+                <div class="card p-2 mt-2">
+                    <div class="card-header bg-white">
+                        <div class="d-flex justify-content-between">
+                            <strong class="aling-self-center">Información</strong>
+                            <div class="d-flex flex-row-reverse bd-highlight">
+                                <div class="btn-group">
+                                    <button onclick="showModal();" class="btn btn-sm ml-2 btn-dark" type="button">
+                                        Crear
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body p-0 m-0">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
@@ -62,8 +73,8 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <label class="form-label">Name:</label>
-                                <input required type="text" class="form-control form-control-sm" name="name"
-                                    id="name" aria-describedby="helpId" placeholder="name of students" />
+                                <input required type="text" class="form-control form-control-sm" name="name" id="name"
+                                    aria-describedby="helpId" placeholder="name of students" />
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label">lastName:</label>
@@ -73,8 +84,7 @@
                             <div class="col-md-4">
                                 <label class="form-label">Email</label>
                                 <input required type="email" class="form-control form-control-sm" name="email"
-                                    id="email" aria-describedby="emailHelpId"
-                                    placeholder="pleace enter your email" />
+                                    id="email" aria-describedby="emailHelpId" placeholder="pleace enter your email" />
                             </div>
                         </div>
                         <div class="row">
