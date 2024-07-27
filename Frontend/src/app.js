@@ -1,9 +1,9 @@
 import {
-    getAllStudents, 
-    getStudentsById, 
-    createService, 
-    updateService, 
-    deleteService 
+    getAllStudents,
+    getStudentsById,
+    createService,
+    updateService,
+    deleteService
 } from '../src/studentService.js';
 
 //modal
@@ -53,6 +53,7 @@ const showModal = async (studentId) => {
         address.value = result.address;
     }
 
+    getModalName();
     modal.show();
 };
 
@@ -81,6 +82,12 @@ const saveValues = async (event) => {
 const deleteValues = async (id) => {
     await deleteService(id);
     await read();
+}
+
+const getModalName = () => {
+    let modalName = document.getElementById('modalTitleId');
+    const name = ((id) ? 'Editar' : 'Crear') + ' ' + 'Student';
+    return modalName.innerHTML = name;
 }
 
 // Hacer las funciones globales
