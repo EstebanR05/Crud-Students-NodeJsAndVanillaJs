@@ -29,12 +29,16 @@ const read = async () => {
         datas += `<td>${student.lastName}</td>`;
         datas += `<td>${student.email}</td>`;
         datas += `<td>${student.phone}</td>`;
-        datas += `<td>${student.address}</td>`;
+        datas += `<td>${student.adress}</td>`;
         datas += '<td>'
-            + '<div class="btn-group" role="group" aria-label="Button group name">'
-            + `<button type="button" class="btn btn-sm btn-dark mr-3 ml-3" onclick="showModal(${student.id})">Edit</button>`
-            + `<button type="button" class="btn btn-sm btn-danger mr-3 ml-3" onclick="deleteValues(${student.id})">Delete</button>`
+            + '<div class="btn-group" role="group" aria-label="Editar">'
+            + `<button type="button" class="btn btn-sm btn-dark" onclick="showModal(${student.id})">Update</button>`
             + '</div>'
+           
+            + ' <div class="btn-group" role="group" aria-label="eliminar">'
+            + `<button type="button" class="btn btn-sm btn-danger" onclick="deleteValues(${student.id})">Delete</button>`
+            + '</div>'
+           
             + '</td>';
         datas += "</tr>";
     });
@@ -86,16 +90,16 @@ const deleteValues = async (id) => {
 
 const getModalName = () => {
     let modalName = document.getElementById('modalTitleId');
-    const name = ((id) ? 'Editar' : 'Crear') + ' ' + 'Student';
+    const name = ((id) ? 'Update' : 'Create') + ' ' + 'Student';
     return modalName.innerHTML = name;
 }
 
-// Hacer las funciones globales
+// Make the functions global
 window.showModal = showModal;
 window.deleteValues = deleteValues;
 window.saveValues = saveValues;
 
-// Inicializar lectura de estudiantes
+// Initialize reading of students
 document.addEventListener('DOMContentLoaded', (event) => {
     read();
 });
