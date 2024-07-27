@@ -32,7 +32,7 @@ const read = async () => {
         datas += `<td>${student.adress}</td>`;
         datas += '<td>'
             + '<div class="btn-group" role="group" aria-label="Editar">'
-            + `<button type="button" class="btn btn-sm btn-dark" onclick="showModal(${student.id})">Update</button>`
+            + `<button type="button" class="btn btn-sm btn-success" onclick="showModal(${student.id})">Update</button>`
             + '</div>'
            
             + ' <div class="btn-group" role="group" aria-label="eliminar">'
