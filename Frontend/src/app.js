@@ -1,90 +1,83 @@
-//urls
-const generalUrl = 'http://localhost:3000';
-
 //modal
-var modal = new bootstrap.Modal(document.getElementById('modalId'), { Keyboard: false });
+let modal = new bootstrap.Modal(document.getElementById('modalId'), { Keyboard: false });
 
-//start aplications
-var Aplication = new function () {
-    //values forms
-    this.name = document.getElementById('name');
-    this.lastName = document.getElementById('lastName');
-    this.email = document.getElementById('email');
-    this.phone = document.getElementById('phone');
-    this.address = document.getElementById('adress');
+//values forms
+let id = null;
+let name = document.getElementById('name');
+let lastName = document.getElementById('lastName');
+let email = document.getElementById('email');
+let phone = document.getElementById('phone');
+let address = document.getElementById('adress');
+let studentsTable = document.getElementById('studentsTable');
 
-    //table
-    this.students = document.getElementById('students');
+//methods
+const read = async () => {
+    var datas = "";
+    const result = await getAllStudents();
 
-    //id update
-    this.id;
+    result.forEach((student) => {
+        datas += "<tr>";
+        datas += `<td>${student.name}</td>`;
+        datas += `<td>${student.lastName}</td>`;
+        datas += `<td>${student.email}</td>`;
+        datas += `<td>${student.phone}</td>`;
+        datas += `<td>${student.address}</td>`;
+        datas += '<td>'
+            + '<div class="btn-group" role="group" aria-label="Button group name">'
+            + `<button type="button" class="btn btn-sm btn-dark mr-3 ml-3" onclick="showModal(${student.id})">Edit</button>`
+            + `<button type="button" class="btn btn-sm btn-danger mr-3 ml-3" onclick="deleteValues(${student.id})">Delete</button>`
+            + '</div>'
+            + '</td>';
+        datas += "</tr>";
+    });
 
-    //methods
-    this.read = async () => {
-        var datas = "";
-        const result = await getAllStudents();
+    studentsTable.innerHTML = datas;
+};
 
-        result.map((student, index, array) => {
-            datas += "<tr>";
+const showModal = async (studentId) => {
+    if (studentId != null) {
+        const result = await getStudentsById(studentId);
+        id = studentId;
+        name.value = result.name;
+        lastName.value = result.lastName;
+        email.value = result.email;
+        phone.value = result.phone;
+        address.value = result.address;
+    }
 
-            datas += `<td>${student.name}</td>`;
-            datas += `<td>${student.lastName}</td>`;
-            datas += `<td>${student.email}</td>`;
-            datas += `<td>${student.phone}</td>`;
-            datas += `<td>${student.adress}</td>`;
-            datas += '<td>'
-                + '<div class="btn-group" role="group" aria-label="Button group name">'
-                + `<button type="button" class="btn btn-sm btn-dark mr-3 ml-3" onclick="Aplication.showModal(${student.id})">Edit</button>`
-                + `<button type="button" class="btn btn-sm btn-danger mr-3 ml-3" onclick="Aplication.deleteValues(${student.id})">Delete</button>`
-                + '</div>'
-                + '</td>';
+    modal.show();
+};
 
-            datas += "</tr>";
-        });
+const saveValues = async (event) => {
+    event.preventDefault();
 
-        return this.students.innerHTML = datas;
+    let bodyParams = {
+        name: document.getElementById('name').value,
+        lastName: document.getElementById('lastName').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        adress: document.getElementById('adress').value
     };
 
-    this.showModal = async (id) => {
-        modal.show();
-
-        if (id != null) {
-            const result = await getStudentsById(id);
-            this.id = id;
-            this.name.value = result.name;
-            this.lastName.value = result.lastName;
-            this.email.value = result.email;
-            this.phone.value = result.phone;
-            this.address.value = result.adress;
-        }
+    if (id) {
+        await updateService(id, bodyParams);
+    } else {
+        await createService(bodyParams);
     }
 
-    this.submit = async () => {
-        let bodyParams = {
-            name: this.name.value,
-            lastName: this.lastName.value,
-            email: this.email.value,
-            phone: this.phone.value,
-            adress: this.address.value
-        };
+    modal.hide();
+    await read();
+};
 
-        if (this.id) {
-            await updateService(this.id, bodyParams);
-        } else {
-            await createService(bodyParams);
-        }
 
-        modal.hide();
-        this.read();
-    }
-
-    this.deleteValues = async (id) => {
-        await deleteService(id);
-        this.read();
-    }
+const deleteValues = async (id) => {
+    await deleteService(id);
+    await read();
 }
 
 //services
+const generalUrl = 'http://localhost:3000';
+
 const getAllStudents = async () => {
     const url = `${generalUrl}/getAllStudents`;
     return await fetch(url).then(r => r.json());
@@ -110,13 +103,12 @@ const deleteService = async (id) => {
     return await fetch(url + id, { method: "DELETE", headers: { "Content-Type": "application/json" } }).then(response => response.json());
 }
 
-//messeng alert 
-// const handleError = (error) => {
-//     Swal.fire({ title: 'Error!', text: error, icon: 'warning' });
-// }
+// Hacer las funciones globales
+window.showModal = showModal;
+window.deleteValues = deleteValues;
+window.saveValues = saveValues;
 
-// const handleSuccess = (message) => {
-//     Swal.fire({ title: 'Success!', text: message, icon: 'success' });
-// }
-
-Aplication.read();
+// Inicializar lectura de estudiantes
+document.addEventListener('DOMContentLoaded', (event) => {
+    read();
+});

@@ -19,11 +19,11 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" >
         <div class="row">
             <div class="col-md-12">
                 <div class="card mt-3">
-                    <div class="card-header bg-white">List of Students</div>
+                    <div class="card-header bg-white">Information</div>
                     <div class="card-body p-2">
                         <div class="table-responsive">
                             <table class="table">
@@ -37,7 +37,7 @@
                                         <th scope="col">Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody id="students"> </tbody>
+                                <tbody id="studentsTable"></tbody>
                             </table>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
         aria-labelledby="modalTitleId" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
             <div class="modal-content">
-                <form action="javascript:void(0);" method="put" onsubmit="Aplication.submit();">
+                <form action="javascript:void(0);" method="post | put" onsubmit="saveValues(event);">
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalTitleId">
                             Edit Student
@@ -101,7 +101,7 @@
         </div>
     </div>
 
-    <script src="app.js"></script>
+    <script src="app.js" type="module"></script>
 </body>
 
 </html>
